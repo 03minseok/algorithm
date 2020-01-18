@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <algorithm>
+#include <stdlib.h>
+using namespace std;
+
+typedef struct NODE *NodePointer;
+typedef struct NODE {
+	int data;
+	struct NODE *next;
+	struct NODE *prev;
+} node;
+
+void addNode(node *target, int i) {// 기준 노드 다음에 추가
+	if (target->next == NULL);
+	else {
+		node *Newnode = (node*)malloc(sizeof(node));
+		Newnode->prev = target;
+		Newnode->data = i;
+		Newnode->next = target->next;
+		target->next = Newnode;
+	}
+}
+
+void removeNode(node *target) {// 기준 노드 다음노드 삭제
+	node* Newnode = target->next;
+	target->next = Newnode->next;
+	Newnode = Newnode->next;
+	Newnode->prev = target;
+}
+
+int main() {
+	node* head = (node*)malloc(sizeof(node)); //머리노드 생성
+	head->prev = NULL;
+	node* tail = (node*)malloc(sizeof(node)); //꼬리노드 생성
+	tail->next = NULL; tail->data = 10;
+	head->next = tail; tail->prev = head;
+
+	addNode(head, 10);
+	addNode(head, 20);
+
+	removeNode(head);
+
+	node* curr = head->next;
+	while (curr != NULL) {
+		printf("%d\n", curr->data);
+		curr = curr->next;
+	}
+	curr = head->next;
+	while (curr != NULL) {
+		free(curr);
+		curr = curr->next;
+	}
+	free(head);
+	return 0;
+}
+
