@@ -1,0 +1,23 @@
+
+​직접 구현해 봤으니, 이번엔 헤더 파일에 대해서 검색해 보았다.
+​
+#스택
+필요한 헤더 파일 : <stack>(+ usint namespace std;)
+스택 생성 : stack<type> S (S라는 이름의 stack 선언)
+명령어 : 
+-S.push(data) 스택에 데이터 추가
+-S.size() 데이터 개수 반환
+-S.top() 최상위 데이터 반환
+-S.pop 최상위 데이터 제거
+-S.empty() 스택이 비어있으면 TRUE, 아니면 FALSE 반환
+​
+#큐
+필요한 헤더 파일 : <queue>(+ usint namespace std;)
+스택 생성 : queue<type> Q(Q라는 이름의 큐 선언)
+명령어 : 
+-Q.push(data) 큐에 데이터 추가
+-Q.size() 데이터 개수 반환
+-Q.front() 큐의 front 반환
+-Q.back() 큐의 back 반환
+-Q.pop 최상위 데이터 제거
+-Q.empty() 큐가 비어있으면 TRUE, 아니면 FALSE 반환
