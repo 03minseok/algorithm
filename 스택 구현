@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+int stack[10000 + 5];
+int topPoint = -1;
+
+
+bool isEmpty() {
+	if (topPoint < 0) return 0;
+	return 1;
+}
+
+void push(int a) {
+	topPoint++;
+	stack[topPoint] = a;
+}
+
+void pop() {
+	if (!isEmpty()) printf("-1\n");
+	else {
+		printf("%d\n", stack[topPoint]);
+		topPoint--;
+	}
+}
+
+void size() {
+	printf("%d\n", topPoint + 1);
+}
+
+
+void empty() {
+	if (!isEmpty()) printf("1\n");
+	else printf("0\n");
+}
+
+void top() {
+	if (isEmpty()) printf("%d\n", stack[topPoint]);
+	else printf("-1\n");
+}
+
+
+
+int main() {
+	int n, i;
+	scanf("%d", &n);
+	for (i = 1; i <= n; i++) {
+		char input[100];
+		scanf("%s", input);
+		if (input[1] == 'u') {
+			int a;
+			scanf("%d", &a);
+			push(a);
+		}
+		else if (input[0] == 'p') {
+			pop();
+		}
+		else if (input[0] == 's') {
+			size();
+		}
+		else if (input[0] == 'e') {
+			empty();
+		}
+		else if (input[0] == 't') {
+			top();
+		}
+	}
+	return 0;
+}
