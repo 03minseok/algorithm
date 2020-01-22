@@ -1,0 +1,87 @@
+#include <stdio.h>
+
+int stack[10000 + 5];
+int bstack[10000 + 5];
+int topPoint = -1;
+
+
+bool isEmpty() {
+	if (topPoint < 0) return 0;
+	return 1;
+}
+
+void push(int a) {
+	topPoint++;
+	stack[topPoint] = a;
+}
+
+void pop() {
+	if (!isEmpty()) printf("-1\n");
+	else {
+		int i = 1;
+		for (i = 0; i < topPoint + 1; i++) {
+			bstack[topPoint - i] = stack[i];
+		}
+		printf("%d\n", bstack[topPoint]);
+		for (i = 0; i < topPoint; i++) {
+			stack[i] = stack[i + 1];
+		}
+		topPoint--;
+	}
+}
+
+void size() {
+	printf("%d\n", topPoint + 1);
+}
+
+
+void empty() {
+	if (!isEmpty()) printf("1\n");
+	else printf("0\n");
+}
+
+void back() {
+	if (!isEmpty()) printf("-1\n");
+	else printf("%d\n", stack[topPoint]);
+}
+
+void front() {
+	if (!isEmpty()) printf("-1\n");
+	else {
+		int i = 1;
+		for (i = 0; i < topPoint + 1; i++) {
+			bstack[topPoint - i] = stack[i];
+		}
+		printf("%d\n", bstack[topPoint]);
+	}
+}
+
+int main() {
+	int n, i;
+	scanf("%d", &n);
+	for (i = 1; i <= n; i++) {
+		char input[100];
+		scanf("%s", input);
+		if (input[1] == 'u') {
+			int a;
+			scanf("%d", &a);
+			push(a);
+		}
+		else if (input[0] == 'p') {
+			pop();
+		}
+		else if (input[0] == 's') {
+			size();
+		}
+		else if (input[0] == 'e') {
+			empty();
+		}
+		else if (input[0] == 'f') {
+			front();
+		}
+		else if (input[0] == 'b') {
+			back();
+		}
+	}
+	return 0;
+}
