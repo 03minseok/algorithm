@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+const int MN = 10000+5;
+vector<int> graph[MN];
+
+int main() {
+	int n, m, i, j;
+	printf("정점, 간선 입력 : ");
+	scanf("%d %d", &n, &m); //n 정점 m 간선
+	for (i = 0; i < m; i++) {
+		int a, b;
+		scanf("%d %d", &a, &b);
+		graph[a].push_back(b);
+		graph[b].push_back(a);
+		//단방향이면 graph[a].push_back(b);
+	}
+	return 0;
+}
+
+<가중치 x>----------------------
+
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct node {
+	int v; //정점
+	int w; //거리
+};
+
+const int MN = 10000+5;
+vector<node> graph[MN];
+
+int main() {
+	int n, m, i, j;
+	printf("정점, 간선 입력 : ");
+	scanf("%d %d", &n, &m); //n 정점 m 간선
+	for (i = 0; i < m; i++) {
+		int a, b, c;
+		scanf("%d %d %d", &a, &b, &c);
+		graph[a].push_back({ b,c });
+		graph[b].push_back({ a,c });
+		//단방향이면 graph[a].push_back({ b,c });
+	}
+	
+	return 0;
+}
+
+<가중치 o>-----------------
