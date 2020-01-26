@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+#include <memory.h>
+#include <queue>
+#include <stdlib.h>
+using namespace std;
+const int N = 10;
+const int MN = 100000 + 5;
+vector<int> graph[MN];
+queue<int> Q;
+
+struct Node {
+	int data;
+	Node *left;
+	Node *right;
+};
+
+Node *root;
+
+//트리의 초기화
+void initTree(int data) {
+	Node *New;
+	New = (Node *)malloc(sizeof(Node));
+	root = New;
+	root->data = data;
+	New->left = NULL;
+	New->right = NULL;
+}
+//자식 노드 생성
+Node *AddChild(Node *parent, int data) {
+	if ((parent->left != NULL) && (parent->right != NULL)) {
+		return 0;
+	}
+	Node *New;
+	New = (Node*)malloc(sizeof(Node));
+	New->left = NULL;
+	New->right = NULL;
+	New->data = data;
+	if (parent->left == NULL) {
+		parent->left = New;
+	}
+	else if (parent->right == NULL) {
+		parent->right = New;
+	}
+	return New;
+}
+//트리의 순회
+void PreOrder(Node *r) {
+	printf("%d ", r->data);
+	if (r->left) PreOrder(r->left);
+	if (r->right) PreOrder(r->right);
+}
+
+int main() {
+	initTree(1);
+	Node *l = AddChild(root, 2);
+	Node *r = AddChild(root, 3);
+	AddChild(l, 4);
+	AddChild(l, 5);
+	AddChild(r, 6);
+	AddChild(r, 7);
+	PreOrder(root);
+	return 0;
+}
